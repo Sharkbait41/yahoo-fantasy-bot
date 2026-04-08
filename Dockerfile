@@ -1,30 +1,21 @@
-# Use an official lightweight Python image
-FROM docker.io/library/python:3.11-slim
+# STAGE 1: Build the application
+FROM docker.io/library/gradle:8-jdk17 AS build
+COPY --chown=gradle:gradle . /home/gradle/src
+WORKDIR /home/gradle/src
 
-# Set environment variables to ensure Python output is logged in real-time
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
+# Build the shadowJar or executable jar (skipping tests to speed up the build)
+RUN gradle build -x test --no-daemon
 
-# Set the working directory inside the container
+# STAGE 2: Run the application
+FROM docker.io/library/openjdk:17-slim
+
+# Set working directory
 WORKDIR /app
 
-# Install system dependencies (useful if the bot requires building C-extensions)
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    gcc \
-    python3-dev \
-    && rm -rf /var/lib/apt/lists/*
+# Copy the compiled JAR from the build stage
+# Note: The jar name usually follows the pattern 'project-name-all.jar' or 'project-name.jar'
+# We use a wildcard to capture it regardless of the exact version/name
+COPY --from=build /home/gradle/src/build/libs/*.jar app.jar
 
-# Copy the requirements file first to leverage Podman layer caching
-COPY requirements.txt .
-
-# Install Python dependencies
-RUN pip install --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt
-
-# Copy the rest of the application code into the container
-COPY . .
-
-# Run the bot
-# NOTE: If the bot's main startup script is named something other than 'main.py' 
-# (e.g., 'bot.py' or 'app.py'), update the filename below accordingly.
-CMD ["python", "main.py"]
+# Run the application
+ENTRYPOINT ["java", "-jar", "app.jar"]
