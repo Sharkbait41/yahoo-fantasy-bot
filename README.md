@@ -4,9 +4,9 @@ April 2026 Update
 
 This project was successfully containerized and deployed locally using Podman in rootless mode. Below are the key technical hurdles and the solutions implemented.
 
-1. New season checklist **Note** League ID may not need to be changed if League is renewed. Otherwise, follow these steps to get it running again:
+1. New season checklist: **Note** League ID may not need to be changed if League is renewed. Otherwise, follow these steps to get it running again:
 
-![](https://i.postimg.cc/v8rM5RVG/Fantasy-Football-Bot-New-Season-Commands.png)
+[![New Season Settings](https://i.postimg.cc/v8rM5RVG/Fantasy-Football-Bot-New-Season-Commands.png](https://i.postimg.cc/v8rM5RVG/Fantasy-Football-Bot-New-Season-Commands.png)
 
 2. Rootless Podman & Privileged Ports
 
