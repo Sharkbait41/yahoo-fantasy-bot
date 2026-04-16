@@ -3,13 +3,18 @@ April 2026 Update
 🚀 Deployment & Troubleshooting Summary
 
 This project was successfully containerized and deployed locally using Podman in rootless mode. Below are the key technical hurdles and the solutions implemented.
-1. Rootless Podman & Privileged Ports
+
+1. New season checklist **Note** League ID may not need to be changed if League is renewed. Otherwise, follow these steps to get it running again:
+
+![](https://i.postimg.cc/v8rM5RVG/Fantasy-Football-Bot-New-Season-Commands.png)
+
+2. Rootless Podman & Privileged Ports
 
 The Issue: Rootless Podman cannot bind to "privileged" ports below 1024 (e.g., Port 80/443). The Solution: The container is mapped to a high-range port (8080) on the host machine while maintaining the bot's internal expectations.
 
     Run Command: podman run -d -p 8080:8080 --env-file bot.env [image-name]
 
-2. The Yahoo OAuth HTTPS Workaround
+3. The Yahoo OAuth HTTPS Workaround
 
 The Issue: The Yahoo Developer Portal requires a Redirect URI. During the authentication flow, the bot might attempt to redirect to https://localhost/auth, which fails because Port 443 is not exposed/privileged. The Solution: The "Manual URL Bridge"
 
@@ -27,13 +32,13 @@ The Issue: The Yahoo Developer Portal requires a Redirect URI. During the authen
 
     The bot will capture the code from the redirected URL and complete the handshake.
 
-3. Persistent Storage
+4. Persistent Storage
 
 The Issue: Container storage is ephemeral; restarting the container would normally wipe the Yahoo authentication tokens. The Solution: A volume mount (or local SQLite file) is used to ensure fantasy_bot.db persists across container restarts.
 
     Status: Verified that refreshing the dashboard does not trigger a re-login once the initial token is saved.
 
-4. Continuous Operation
+5. Continuous Operation
 
 To ensure the bot remains active as a background service:
 
