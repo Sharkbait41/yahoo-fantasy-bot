@@ -44,7 +44,7 @@ To ensure the bot remains active as a background service:
 
 # **THIS REPO HAS BEEN ARCHIVED AND IS NOT BEING ACTIVELY MAINTAINED ANYMORE. IT WAS A FUN 4 YEARS, BUT I DON'T USE YAHOO FANTASY ANYMORE AND SADLY DON'T HAVE THE TIME TO SUPPORT IT. THANKS EVERYONE FOR USING IT!**
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+~~[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)~~
 
 **Note: Frontend does not work in safari (v3.0.0)**
 
@@ -59,7 +59,7 @@ To ensure the bot remains active as a background service:
 - [ ] Respond to chat commands from various messaging services
 - [ ] Clean up code
 
-**Auto-deploys do not happen automatically. You will need to come back and click the "Deploy" button again to get the latest bot. It will reset everything. Just follow all the steps again and you will be good!**
+~~**Auto-deploys do not happen automatically. You will need to come back and click the "Deploy" button again to get the latest bot. It will reset everything. Just follow all the steps again and you will be good!**~~
 
 # Yahoo Fantasy Bot
 Bot that alerts GroupMe, Slack, and Discord users about various things happening in their Yahoo Fantasy Football League.
@@ -78,10 +78,10 @@ Bot that alerts GroupMe, Slack, and Discord users about various things happening
 
 ![](https://i.imgur.com/1Ol63Al.png)
  
-## Follow these steps EXACTLY!
-1. Click the `Deploy to Heroku` button at the top. It will auto-deploy the application to Heroku.
+~~## Follow these steps EXACTLY!~~
+~~1. Click the `Deploy to Heroku` button at the top. It will auto-deploy the application to Heroku.
 2. Name the application whatever you would like.
-3. Follow the below section.
+3. Follow the below section.~~
 
 ---
 
@@ -225,20 +225,20 @@ You will need a Yahoo Access Token, Client ID, and Client Secret for this bot to
 6. Follow the below section.
 
 
-### Heroku Setup
+~~### Heroku Setup~~
 
-1. Go to your [dashboard](https://dashboard.heroku.com/apps). Now you will need to setup your environment variables so that it works for your league. Click Settings at your dashboard. Then click "Reveal Config Vars" button and you will see something like this.
+~~1. Go to your [dashboard](https://dashboard.heroku.com/apps). Now you will need to setup your environment variables so that it works for your league. Click Settings at your dashboard. Then click "Reveal Config Vars" button and you will see something like this.~~
 
-![](https://imgur.com/8k1tZPs.png)
+~~![](https://imgur.com/8k1tZPs.png)~~
 
-2. Fill out all the variables (You can have any combination of messaging services (0..n).)
+~~2. Fill out all the variables (You can have any combination of messaging services (0..n).)
 3. Click "Deploy App". This will automatically configure the dynos and run all required scripts to create the bot. (this will take a bit)
 4. Click "Overview"
 5. Click "Configure Dynos" and turn on the "web" and "bot" dyno
 6. Click "Open App" at the top right
 7. Follow the setup
 8. Once you are authorized you can add all types of alerts for your league!
-9. IMPORTANT: Once done adding alerts, Click "Configure Dynos" and turn OFF the "web" dyno (failing to do this will put your bot to sleep because of heroku policy, thus your bot will not function.)
+9. IMPORTANT: Once done adding alerts, Click "Configure Dynos" and turn OFF the "web" dyno (failing to do this will put your bot to sleep because of heroku policy, thus your bot will not function.)~~
 
 ### You are all set! Enjoy the bot!
 
