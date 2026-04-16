@@ -13,13 +13,14 @@ application {
 }
 
 node {
+    version = "14.17.0"
+    download = false
+
     nodeModulesDir = file("../frontend")
-    version = "14.5.0"
-    download = true
 }
 
 repositories {
-    maven { url = uri("https://kotlin.bintray.com/ktor") }
+    mavenCentral()
 }
 
 dependencies {
@@ -32,9 +33,10 @@ dependencies {
     implementation("io.ktor:ktor-client-okhttp:$ktorVersion")
     implementation("io.ktor:ktor-client-json-jvm:$ktorVersion")
     implementation("io.ktor:ktor-client-gson:$ktorVersion")
-    implementation("org.koin:koin-ktor:2.1.6")
+    implementation("io.insert-koin:koin-ktor:2.1.6")
     implementation(project(":shared"))
     testImplementation("io.ktor:ktor-server-tests:$ktorVersion")
+    implementation("org.xerial:sqlite-jdbc:3.45.1.0")
 }
 
 kotlin.sourceSets["main"].kotlin.srcDirs("src")
