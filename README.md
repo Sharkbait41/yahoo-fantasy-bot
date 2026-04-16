@@ -42,22 +42,9 @@ To ensure the bot remains active as a background service:
     Self-Healing: Configured with --restart always to survive system reboots or unexpected crashes.
 
 
-# **THIS REPO HAS BEEN ARCHIVED AND IS NOT BEING ACTIVELY MAINTAINED ANYMORE. IT WAS A FUN 4 YEARS, BUT I DON'T USE YAHOO FANTASY ANYMORE AND SADLY DON'T HAVE THE TIME TO SUPPORT IT. THANKS EVERYONE FOR USING IT!**
-
-~~[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)~~
-
 **Note: Frontend does not work in safari (v3.0.0)**
 
 ### Feel free to contribute!
-
-#### Current Roadmap
-
-- [x] Kotlin (because why not :?)
-- [x] Reactive X
-- [ ] Docker Support
-- [x] More in depth messages
-- [ ] Respond to chat commands from various messaging services
-- [ ] Clean up code
 
 ~~**Auto-deploys do not happen automatically. You will need to come back and click the "Deploy" button again to get the latest bot. It will reset everything. Just follow all the steps again and you will be good!**~~
 
