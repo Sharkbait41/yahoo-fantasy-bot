@@ -222,3 +222,43 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
+🚀 Deployment & Troubleshooting Summary
+
+This project was successfully containerized and deployed locally using Podman in rootless mode. Below are the key technical hurdles and the solutions implemented.
+1. Rootless Podman & Privileged Ports
+
+The Issue: Rootless Podman cannot bind to "privileged" ports below 1024 (e.g., Port 80/443). The Solution: The container is mapped to a high-range port (8080) on the host machine while maintaining the bot's internal expectations.
+
+    Run Command: podman run -d -p 8080:8080 --env-file bot.env [image-name]
+
+2. The Yahoo OAuth HTTPS Workaround
+
+The Issue: The Yahoo Developer Portal requires a Redirect URI. During the authentication flow, the bot might attempt to redirect to https://localhost/auth, which fails because Port 443 is not exposed/privileged. The Solution: The "Manual URL Bridge"
+
+    Trigger the authentication via the bot dashboard at http://localhost:8080.
+
+    Complete the Yahoo login.
+
+    When the browser redirects to a broken https://localhost/auth?code=... link:
+
+        Manually edit the URL in the address bar.
+
+        Change https://localhost/ to http://localhost:8080/.
+
+        Keep the rest of the URL (code and state parameters) and hit Enter.
+
+    The bot will capture the code from the redirected URL and complete the handshake.
+
+3. Persistent Storage
+
+The Issue: Container storage is ephemeral; restarting the container would normally wipe the Yahoo authentication tokens. The Solution: A volume mount (or local SQLite file) is used to ensure fantasy_bot.db persists across container restarts.
+
+    Status: Verified that refreshing the dashboard does not trigger a re-login once the initial token is saved.
+
+4. Continuous Operation
+
+To ensure the bot remains active as a background service:
+
+    Background Mode: Started with the -d (detached) flag.
+
+    Self-Healing: Configured with --restart always to survive system reboots or unexpected crashes.
